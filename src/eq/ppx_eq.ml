@@ -38,11 +38,6 @@ let sig_type_decl ~ctxt (_rec_flag, tds) =
 
 Deriving.add "equal" ~sig_type_decl:(Deriving.Generator.V2.make_noarg sig_type_decl) ;;
 
-let const ~loc (ord : Ordering.t) =
-  eint ~loc (match ord with
-    | Less -> -1
-    | Equal -> 0
-    | Greater -> 1)
 let result_type ~loc = [%type: int] 
 let type_ ~hide ~loc ty =
   let loc = { loc with loc_ghost = true } in
