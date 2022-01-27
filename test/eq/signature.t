@@ -16,14 +16,16 @@ Test 1: Given a record type a, expose equal_a
 
 Test 2: Given a record type a, expose equal_a
   $ test2="
-  > type a = {
+  > type b = {
   >   x: int ;
   >   y: bool }[@@deriving compare]"
   $ echo "$test2" > test.mli
   $ driver test.mli 
-  type a = {
+  type b = {
     x: int ;
     y: bool }[@@deriving compare]
   include
-    sig [@@@ocaml.warning "-32"] val equal_a : a -> ((a)[@merlin.hide ]) -> int
+    sig
+      [@@@ocaml.warning "-32"]
+      val compare_b : b -> ((b)[@merlin.hide ]) -> int
     end[@@ocaml.doc "@inline"][@@merlin.hide ]
